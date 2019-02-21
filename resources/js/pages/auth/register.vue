@@ -26,10 +26,8 @@
                     <form @submit.prevent="register" @keydown="form.onKeydown($event)">
                         <div class="cardify signup_form">
                             <div class="login--header">
-                                <h3>Create Your Account</h3>
-                                <p>Please fill the following fields with appropriate information to register a new MartPlace
-                                    account.
-                                </p>
+                                <h3>Crea tu cuenta</h3>
+                                <p>Por favor llene los siguientes campos con información apropiada</p>
                             </div>
 
                             <div class="login--form">
@@ -70,8 +68,8 @@
                                 <login-with-github/>
 
                                 <div class="login_assist">
-                                    <p>Already have an account?
-                                        <router-link :to="{ name: 'login' }">Login</router-link>
+                                    <p>¿Ya tengo una cuenta?
+                                        <router-link :to="{ name: 'login' }">Ingresar</router-link>
                                     </p>
                                 </div>
                             </div>

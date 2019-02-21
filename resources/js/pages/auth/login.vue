@@ -26,8 +26,8 @@
                     <form @submit.prevent="login" @keydown="form.onKeydown($event)">
                         <div class="cardify login">
                             <div class="login--header">
-                                <h3>Welcome Back</h3>
-                                <p>You can sign in with your username</p>
+                                <h3>Bienvenido</h3>
+                                <p>Puedes iniciar sesión con tu correo electrónico y contraseña</p>
                             </div>
 
                             <div class="login--form">
@@ -66,8 +66,8 @@
                                       {{ $t('forgot_password') }}
                                     </router-link>
 
-                                    <p class="signup">Don't have an
-                                        <router-link :to="{ name: 'register' }">account</router-link>?</p>
+                                    <p class="signup">¿No tienes una
+                                        <router-link :to="{ name: 'register' }">cuenta</router-link>?</p>
                                 </div>
                             </div>
                         </div>
