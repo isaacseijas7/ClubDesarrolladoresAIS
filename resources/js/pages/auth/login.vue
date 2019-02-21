@@ -1,54 +1,81 @@
 <template>
-  <div class="row">
-    <div class="col-lg-8 m-auto">
-      <card :title="$t('login')">
-        <form @submit.prevent="login" @keydown="form.onKeydown($event)">
-          <!-- Email -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('email') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
-              <has-error :form="form" field="email"/>
+  <div>
+    <section class="breadcrumb-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="breadcrumb">
+              <ul>
+                <li>
+                    <router-link :to="{ name: 'welcome' }">Inicio</router-link>
+                </li>
+                <li class="active">
+                    <router-link :to="{ name: 'login' }">Ingresar</router-link>
+                </li>
+              </ul>
             </div>
+            <h1 class="page-title">Ingresar</h1>
           </div>
+        </div>
+      </div>
+    </section>
+    <section class="login_area section--padding2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <form @submit.prevent="login" @keydown="form.onKeydown($event)">
+                        <div class="cardify login">
+                            <div class="login--header">
+                                <h3>Welcome Back</h3>
+                                <p>You can sign in with your username</p>
+                            </div>
 
-          <!-- Password -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('password') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="password" name="password">
-              <has-error :form="form" field="password"/>
+                            <div class="login--form">
+                                <div class="form-group">
+                                    <label for="email">{{ $t('email') }}</label>
+
+                                    <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control text_field" :placeholder="$t('email')" type="email" name="email" id="email" autofocus>
+                                    <has-error :form="form" field="email"/>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password">{{ $t('password') }}</label>
+                                    <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control text_field" :placeholder="$t('password')" type="password" name="password" id="password">
+                                    <has-error :form="form" field="password"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="custom_checkbox">
+                                        <checkbox v-model="remember" id="ch2" name="remember">
+                                          {{ $t('remember_me') }}
+                                        </checkbox>
+                                    </div>
+                                </div>
+
+                                <v-button class="btn btn--md btn--round" :loading="form.busy">
+                                  {{ $t('login') }}
+                                </v-button>
+
+                                <!-- GitHub Login Button -->
+                                <login-with-github/>
+
+                                <div class="login_assist">
+
+                                    <router-link :to="{ name: 'password.request' }" class="recover">
+                                      {{ $t('forgot_password') }}
+                                    </router-link>
+
+                                    <p class="signup">Don't have an
+                                        <router-link :to="{ name: 'register' }">account</router-link>?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-          </div>
-
-          <!-- Remember Me -->
-          <div class="form-group row">
-            <div class="col-md-3"/>
-            <div class="col-md-7 d-flex">
-              <checkbox v-model="remember" name="remember">
-                {{ $t('remember_me') }}
-              </checkbox>
-
-              <router-link :to="{ name: 'password.request' }" class="small ml-auto my-auto">
-                {{ $t('forgot_password') }}
-              </router-link>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-md-7 offset-md-3 d-flex">
-              <!-- Submit Button -->
-              <v-button :loading="form.busy">
-                {{ $t('login') }}
-              </v-button>
-
-              <!-- GitHub Login Button -->
-              <login-with-github/>
-            </div>
-          </div>
-        </form>
-      </card>
-    </div>
+        </div>
+    </section>
   </div>
 </template>
 
@@ -58,6 +85,7 @@ import LoginWithGithub from '~/components/LoginWithGithub'
 
 export default {
   middleware: 'guest',
+  layout: 'basic',
 
   components: {
     LoginWithGithub

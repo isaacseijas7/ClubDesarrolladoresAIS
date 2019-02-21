@@ -22,7 +22,7 @@
                 </div>
                 <div class="autor__info">
                   <p class="name">
-                    Username
+                    {{ user.name }}
                   </p>
                   <p class="ammount"></p>
                 </div>
@@ -30,13 +30,13 @@
                 <div class="dropdown dropdown--author">
                   <ul>
                     <li>
-                      <router-link :to="{ name: 'settings.profile' }">
-                        <span class="lnr lnr-user"></span> Perfil
+                      <router-link :to="{ name: 'home' }">
+                        <span class="lnr lnr-home"></span> Escritorio
                       </router-link>
                     </li>
                     <li>
-                      <router-link :to="{ name: 'home' }">
-                        <span class="lnr lnr-home"></span> Tablero
+                      <router-link :to="{ name: 'settings.profile' }">
+                        <span class="lnr lnr-user"></span> Perfil
                       </router-link>
                     </li>
                     <li>
@@ -93,39 +93,23 @@
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                   <li>
-                    <router-link :to="{ name: 'welcome' }">INICIO</router-link>
+                    <router-link :to="{ name: 'welcome' }" active-class="active">INICIO</router-link>
                   </li>
                   <li>
-                    <router-link :to="{ name: 'welcome' }">ACERCA</router-link>
+                    <router-link :to="{ name: 'welcome' }" active-class="active">ACERCA</router-link>
                   </li>
                   <li>
-                    <router-link :to="{ name: 'welcome' }">GALERÍA</router-link>
+                    <router-link :to="{ name: 'welcome' }" active-class="active">EVENTOS</router-link>
                   </li>
                   <li>
-                    <router-link :to="{ name: 'welcome' }">EVENTOS</router-link>
+                    <router-link :to="{ name: 'welcome' }" active-class="active">BLOG</router-link>
                   </li>
                   <li>
-                    <router-link :to="{ name: 'welcome' }">ARTÍCULOS</router-link>
+                    <router-link :to="{ name: 'welcome' }" active-class="active">GALERÍA</router-link>
                   </li>
                   <li>
-                    <router-link :to="{ name: 'welcome' }">CONTACTOS</router-link>
+                    <router-link :to="{ name: 'welcome' }" active-class="active">CONTACTOS</router-link>
                   </li>
-                  <!-- <li class="has_dropdown">
-                    <a href="index.html">HOME</a>
-                    <div class="dropdown dropdown--menu">
-                      <ul>
-                        <li>
-                          <a href="index.html">Home Multi Vendor</a>
-                        </li>
-                        <li>
-                          <a href="index-single.html">Home Two Single User</a>
-                        </li>
-                        <li>
-                          <a href="index3.html">Home Three Product</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </li> -->
                 </ul>
               </div>
 

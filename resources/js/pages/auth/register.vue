@@ -1,58 +1,86 @@
 <template>
-  <div class="row">
-    <div class="col-lg-8 m-auto">
-      <card :title="$t('register')">
-        <form @submit.prevent="register" @keydown="form.onKeydown($event)">
-          <!-- Name -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('name') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }" class="form-control" type="text" name="name">
-              <has-error :form="form" field="name"/>
+  <div>
+    <section class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb">
+                        <ul>
+                            <li>
+                                <router-link :to="{ name: 'welcome' }">Inicio</router-link>
+                            </li>
+                            <li class="active">
+                                <router-link :to="{ name: 'welcome' }">Crear cuenta</router-link>
+                            </li>
+                        </ul>
+                    </div>
+                    <h1 class="page-title">Crear cuenta</h1>
+                </div>
             </div>
-          </div>
+        </div>
+    </section>
+    <section class="signup_area section--padding2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <form @submit.prevent="register" @keydown="form.onKeydown($event)">
+                        <div class="cardify signup_form">
+                            <div class="login--header">
+                                <h3>Create Your Account</h3>
+                                <p>Please fill the following fields with appropriate information to register a new MartPlace
+                                    account.
+                                </p>
+                            </div>
 
-          <!-- Email -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('email') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
-              <has-error :form="form" field="email"/>
+                            <div class="login--form">
+
+                                <div class="form-group">
+                                    <label for="name">{{ $t('name') }}</label>
+
+                                    <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }" class="form-control text_field" :placeholder="$t('name')" type="text" name="name" id="name" autofocus>
+                                    <has-error :form="form" field="name"/>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">{{ $t('email') }}</label>
+
+                                    <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control text_field" :placeholder="$t('email')" type="email" name="email" id="email">
+                                    <has-error :form="form" field="email"/>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password">{{ $t('password') }}</label>
+                                    <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control text_field" :placeholder="$t('password')" type="password" name="password" id="password">
+                                    <has-error :form="form" field="password"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password_confirmation">{{ $t('confirm_password') }}</label>
+                                    <input v-model="form.password_confirmation" :class="{ 'is-invalid': form.errors.has('password_confirmation') }" class="form-control text_field" :placeholder="$t('confirm_password')" type="password" name="password_confirmation" id="password_confirmation">
+                                    <has-error :form="form" field="password_confirmation"/>
+                                </div>
+
+                                <v-button class="btn btn--md btn--round register_btn" :loading="form.busy">
+                                  {{ $t('register') }}
+                                </v-button>
+
+                                <!-- GitHub Register Button -->
+                                <login-with-github/>
+
+                                <div class="login_assist">
+                                    <p>Already have an account?
+                                        <router-link :to="{ name: 'login' }">Login</router-link>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-          </div>
-
-          <!-- Password -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('password') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="password" name="password">
-              <has-error :form="form" field="password"/>
-            </div>
-          </div>
-
-          <!-- Password Confirmation -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('confirm_password') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.password_confirmation" :class="{ 'is-invalid': form.errors.has('password_confirmation') }" class="form-control" type="password" name="password_confirmation">
-              <has-error :form="form" field="password_confirmation"/>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-md-7 offset-md-3 d-flex">
-              <!-- Submit Button -->
-              <v-button :loading="form.busy">
-                {{ $t('register') }}
-              </v-button>
-
-              <!-- GitHub Register Button -->
-              <login-with-github/>
-            </div>
-          </div>
-        </form>
-      </card>
-    </div>
+        </div>
+    </section>
   </div>
 </template>
 
@@ -62,6 +90,7 @@ import LoginWithGithub from '~/components/LoginWithGithub'
 
 export default {
   middleware: 'guest',
+  layout: 'basic',
 
   components: {
     LoginWithGithub
