@@ -7,7 +7,7 @@
           <div class="col-lg-3 col-md-3 col-6 v_middle">
             <div class="logo">
               <router-link :to="{ name: 'welcome' }">
-                <img src="images/logo.png" alt="logo image" class="img-fluid">
+                <img :src="imgLogo" alt="logo image" class="img-fluid">
               </router-link>
             </div>
           </div>
@@ -17,7 +17,7 @@
             <div v-if="user" class="author-area">
               <div class="author-author__info inline has_dropdown">
                 <div class="author__avatar">
-                  <img src="images/usr_avatar.png" alt="user avatar">
+                  <img :src="imgAvatar" alt="user avatar">
 
                 </div>
                 <div class="autor__info">
@@ -124,19 +124,35 @@
 </template>
 
 <script>
+
+const imgLogo = require('./../../images/logo.png');
+const imgAvatar = require('./../../images/usr_avatar.png')
+
 import { mapGetters } from 'vuex'
+
 export default {
   components: { },
 
   data: () => ({
-    appName: window.config.appName
+    appName: window.config.appName,
+    imgLogo: imgLogo,
+    imgAvatar: imgAvatar
   }),
 
   computed: mapGetters({
     user: 'auth/user'
   }),
 
+  mounted() {
+    this.main();
+  },
+
   methods: {
+
+    main (){
+      console.log(this.imgLogo);
+    },
+
     async logout () {
       // Log out the user.
       await this.$store.dispatch('auth/logout')
